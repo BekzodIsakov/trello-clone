@@ -5,7 +5,7 @@ import { Tag as StyledTag } from '../reusable-components';
 
 const TagsBoardBase = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-content: flex-start;
   flex-flow: row wrap;
   width: 20rem;
   height: 100%;

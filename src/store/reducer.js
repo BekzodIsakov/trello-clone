@@ -118,7 +118,9 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         tags: action.newTags,
-      }
+      };
+    case 'ASSIGN_TASK':
+      return action.newState;
     default:
       return state;
   }

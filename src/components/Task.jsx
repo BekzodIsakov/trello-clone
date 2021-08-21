@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import { Draggable } from 'react-beautiful-dnd';
 
 import { TagsTitle, Tag} from '../reusable-components';
+import AssignTask from './AssignTask';
 
 const TaskBase = styled.div`
   padding: 0.8rem;
@@ -47,6 +48,7 @@ const Task = ({ task, index }) => {
               return <Tag key={index}>{tag}</Tag>;
             })}
           </Container>
+          <AssignTask taskId={id} />
         </TaskBase>
       )}
     </Draggable>
