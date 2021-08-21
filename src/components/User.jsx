@@ -13,7 +13,7 @@ const UserBase = styled.li`
   height: 6rem;
   margin-right: -1rem;
   background: linear-gradient(to right, #334d50, #cbcaa5);
-  border: 0.1rem solid ${props => props.theme.colors.gray50};
+  border: 0.1rem solid ${(props) => props.theme.colors.gray50};
   border-radius: 50%;
   font-size: 1rem;
   font-weight: bold;
@@ -22,9 +22,18 @@ const UserBase = styled.li`
   color: white;
   transition-duration: 500ms;
   user-select: none;
+  background: ${(props) =>
+    props.userId === 'user-1'
+      ? `url(${man_1})`
+      : props.userId === 'user-2'
+      ? `url(${man_2})`
+      : props.userId === 'user-3'
+      ? `url(${man_3})`
+      : `url(${woman_1})`};
+  background-size: cover;
 
-  :nth-child(1) {
-    background: url(${man_1});
+  /* :nth-child(1) {
+    background:  url(${man_1});
     background-size: cover;
   }
 
@@ -41,7 +50,7 @@ const UserBase = styled.li`
   :nth-child(4) {
     background: url(${woman_1});
     background-size: cover;
-  }
+  } */
 
   :hover {
     transform: translateX(-1rem);
@@ -49,7 +58,7 @@ const UserBase = styled.li`
 
   span {
     background-color: #0000006e;
-    color: ${props => props.theme.colors.gray50};
+    color: ${(props) => props.theme.colors.gray50};
     width: 100%;
     height: 100%;
     display: flex;
@@ -66,17 +75,17 @@ const UserBase = styled.li`
   }
 `;
 
-const User = ({ user }) => {  
+const User = ({ user }) => {
   const { id, name, taskIds } = user;
 
-  const {tasks, columns} = useSelector(state => state);
+  const { tasks } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const onClickHandler = () => {
-    let tags = taskIds.map(task => tasks[task].tags);
+    let tags = taskIds.map((task) => tasks[task].tags);
     let mergedTags = [];
     for (let i = 0; i < tags.length; i++) {
-      mergedTags = [...mergedTags,...tags[i]];
+      mergedTags = [...mergedTags, ...tags[i]];
     }
 
     dispatch({
@@ -84,10 +93,9 @@ const User = ({ user }) => {
       newTags: mergedTags,
     });
   };
-  
 
   return (
-    <UserBase onClick={onClickHandler}>
+    <UserBase userId={id} onClick={onClickHandler}>
       <span>{name}</span>
     </UserBase>
   );

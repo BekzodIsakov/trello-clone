@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import User from './User';
 
-const UsersBoardBase = styled.div`
+export const UsersBoardBase = styled.div`
   display: flex;
   align-items: center;
   min-width: 30rem;

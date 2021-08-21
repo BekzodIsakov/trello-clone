@@ -4,6 +4,7 @@ import { Draggable } from 'react-beautiful-dnd';
 
 import { TagsTitle, Tag} from '../reusable-components';
 import AssignTask from './AssignTask';
+import AssigneesBoard from './AssigneesBoard';
 
 const TaskBase = styled.div`
   padding: 0.8rem;
@@ -12,6 +13,7 @@ const TaskBase = styled.div`
   border-bottom: 0.1rem solid ${(props) => props.theme.colors.gray300};
   border-radius: 0.3rem;
   cursor: inherit;
+  overflow-x: hidden;
 
   ${(props) =>
     props.isDragging &&
@@ -31,7 +33,7 @@ const Container = styled.div`
 // }
 
 const Task = ({ task, index }) => {
-  const { id, content, tags } = task;
+  const { id, content, tags,  assignees} = task;
   return (
     <Draggable draggableId={id} index={index}>
       {(provided, snapshot) => (
@@ -49,6 +51,7 @@ const Task = ({ task, index }) => {
             })}
           </Container>
           <AssignTask taskId={id} />
+          <AssigneesBoard assignees={assignees} />
         </TaskBase>
       )}
     </Draggable>

@@ -29,6 +29,7 @@ const NewTask = ({ column }) => {
       id: task,
       content,
       tags: tagsArray,
+      assignees: [],
     };
 
     let taskIds = columns[column].taskIds.slice();

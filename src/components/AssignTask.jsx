@@ -22,7 +22,7 @@ const SearchBox = styled.form`
   height: 3.2rem;
 `;
 
-const Title = styled(TagsTitle)`
+export const Title = styled(TagsTitle)`
   margin-right: 0.6rem;
 `;
 
@@ -39,9 +39,11 @@ const AssignTask = ({ taskId }) => {
   const InputRef = useRef();
 
   const state = useSelector((state) => state);
+  const { users, tasks } = state;
+
   const dispatch = useDispatch();
 
-  const usersArray = Object.values(state.users);
+  const usersArray = Object.values(users);
 
   const getUser = (e) => {
     setSelectedUser(e.target.value);
@@ -58,19 +60,33 @@ const AssignTask = ({ taskId }) => {
       }
     });
 
-    let { taskIds } = state.users[userId];
+    const oldAssignees = [...tasks[taskId].assignees];
+
+    let newAssignees;
+    if (!oldAssignees.includes(userId)) {
+      newAssignees = [...oldAssignees, userId];
+    }
+
+    let { taskIds } = users[userId];
     let newTaskIds;
 
+    //the bug is here
     if (!taskIds.includes(taskId)) {
       newTaskIds = [...taskIds, taskId];
-      console.log(newTaskIds);
 
       let newState = {
         ...state,
+        tasks: {
+          ...state.tasks,
+          [taskId]: {
+            ...state.tasks[taskId],
+            assignees: [...newAssignees],
+          },
+        },
         users: {
-          ...state.users,
+          ...users,
           [userId]: {
-            ...state.users[userId],
+            ...users[userId],
             taskIds: newTaskIds,
           },
         },
