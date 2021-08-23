@@ -131,17 +131,6 @@ export const reducer = (state = initialState, action) => {
       };
     case 'ASSIGN_TASK':
       return action.newState;
-    case 'REMOVE_SELECTED_TAG':
-      return {
-        ...state,
-        selectedTag: 'empty',
-      };
-    case 'SELECT_TAG':
-      let { newSelectedTag } = action;
-      return {
-        ...state,
-        selectedTag: newSelectedTag,
-      };
     default:
       return state;
   }

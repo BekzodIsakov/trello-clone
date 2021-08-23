@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Tag as StyledTag } from '../reusable-components';
 
@@ -18,39 +18,17 @@ const TagsBoardBase = styled.div`
 
 const Tag = styled(StyledTag)`
   margin-bottom: 0.6rem;
-  cursor: pointer;
-
-  :first-child {
-    font-weight: 600;
-  }
+  cursor: default;
 `;
 
 const TagsBoard = () => {
   const state = useSelector((state) => state);
   const { tags } = state;
 
-  const dispatch = useDispatch();
-
-  const removeSelectedTag = () => {
-    dispatch({
-      type: 'REMOVE_SELECTED_TAG',
-    });
-  };
-
-  const selectTag = (tag) => {
-    dispatch({
-      type: 'SELECT_TAG',
-      newSelectedTag: [tag],
-    });
-  };
-
   return (
     <TagsBoardBase>
-      <Tag onClick={removeSelectedTag}>All</Tag>
       {tags.map((tag, index) => (
-        <Tag onClick={() => selectTag(tag)} key={index}>
-          {tag}
-        </Tag>
+        <Tag key={index}>{tag}</Tag>
       ))}
     </TagsBoardBase>
   );

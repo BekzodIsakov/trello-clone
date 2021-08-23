@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { Droppable } from 'react-beautiful-dnd';
 
 import Task from './Task';
 import NewTask from './NewTask';
-import { useState } from 'react';
 
 export const ColumnBase = styled.div`
   display: inline-grid;
@@ -36,29 +35,8 @@ const TaskList = styled.div`
 // }
 
 const Column = ({ column }) => {
-  const [tasksArray, setTasksArray] = useState(column.taskIds);
-
-  const { tasks, columns, selectedTag } = useSelector((state) => state);
+  const { tasks } = useSelector((state) => state);
   let { id, title, taskIds } = column;
-
-  useEffect(() => {
-    if (typeof selectedTag === 'object') {
-      let newTaskIds = [];
-
-      taskIds.map((taskId) => {
-        if (tasks[taskId].tags.includes(selectedTag[0])) {
-          newTaskIds.push(taskId);
-        }
-      });
-      setTasksArray(newTaskIds);
-    } else {
-      setTasksArray(taskIds);
-    }
-  }, [selectedTag]);
-
-  useEffect(() => {
-    setTasksArray(taskIds);
-  }, [columns]);
 
   return (
     <ColumnBase>
@@ -70,15 +48,9 @@ const Column = ({ column }) => {
             isDraggingOver={snapshot.isDraggingOver}
             {...provided.droppableProps}
           >
-            {
-              // To show tasks by tag name use tasksArray state instead of taskIds on line below
-              // tasksArray.map((taskId, index) => {
-              //   return <Task key={taskId} task={tasks[taskId]} index={index} />;
-              // })
-              taskIds.map((taskId, index) => {
-                return <Task key={taskId} task={tasks[taskId]} index={index} />;
-              })
-            }
+            {taskIds.map((taskId, index) => {
+              return <Task key={taskId} task={tasks[taskId]} index={index} />;
+            })}
             {provided.placeholder}
           </TaskList>
         )}
