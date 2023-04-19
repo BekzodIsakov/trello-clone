@@ -3,10 +3,10 @@
 - [ ] Migrate to RTK
 - [ ] Upgrade to React 18
 - [ ] Add TypeScript 
-- [ ] Inside the project
 - [ ] Connect with backend(Express, MySQL db)
+- [ ] Inside the project
   - [ ] Update and imporve dnd structure if possible
   - [ ] Change state data structure
   - [ ] CRUD - Tasks
   - [ ] CRUD - Users
-  - [ ] Change background
+  - [x] Change background

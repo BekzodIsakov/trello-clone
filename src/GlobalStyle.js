@@ -1,18 +1,18 @@
-import { createGlobalStyle } from 'styled-components';
-import bg2 from './assets/images/bg2.jpg';
+import { createGlobalStyle } from "styled-components";
+import un from "./assets/images/un.jpg";
 
 export const styles = {
   colors: {
-    white: '#ffffff',
-    gray: '#ebecf0',
-    gray50: '#e4e4e5',
-    gray100: '#091e4214',
-    gray200: '#dddedf',
-    gray300: '#9d9d9f',
-    blue: '#0079bf',
-    blue50: '#0079BF',
-    blue100: '#026aa7',
-    blue200: '#172b4d',
+    white: "#ffffff",
+    gray: "#ebecf0",
+    gray50: "#e4e4e5",
+    gray100: "#091e4214",
+    gray200: "#dddedf",
+    gray300: "#9d9d9f",
+    blue: "#0079bf",
+    blue50: "#0079BF",
+    blue100: "#026aa7",
+    blue200: "#172b4d",
   },
 };
 
@@ -30,7 +30,7 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     height: 100vh;
-    background: gray url(${bg2}) no-repeat 0 30%;
+    background: gray url(${un}) no-repeat 0 30%;
     background-size: cover;
     font-family: 'Montserrat', sans-serif;
     font-size: 1.4rem;
